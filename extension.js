@@ -1,4 +1,5 @@
 import St from 'gi://St';
+import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
@@ -33,7 +34,9 @@ export default class WindbarExtension extends Extension {
 
         this._button = new PanelMenu.Button(0.0, this.metadata.name, false);
         this._icon = new St.Icon({
-            icon_name: 'network-vpn-symbolic',
+            gicon: Gio.FileIcon.new(
+                Gio.File.new_for_path(`${this.path}/windscribe-symbolic.svg`),
+            ),
             style_class: 'system-status-icon',
         });
         this._button.add_child(this._icon);
@@ -336,9 +339,6 @@ export default class WindbarExtension extends Extension {
         this._rotateItem.visible = status.connected;
         this._pinItem.visible = status.connected;
         this._loginItem.visible = !status.loggedIn;
-        this._icon.icon_name = status.connected
-            ? 'network-vpn-symbolic'
-            : 'network-offline-symbolic';
     }
 
     _shortError(error) {
