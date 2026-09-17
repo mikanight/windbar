@@ -35,7 +35,7 @@ export default class WindbarExtension extends Extension {
         this._button = new PanelMenu.Button(0.0, this.metadata.name, false);
         this._icon = new St.Icon({
             gicon: Gio.FileIcon.new(
-                Gio.File.new_for_path(`${this.path}/windscribe-symbolic.svg`),
+                Gio.File.new_for_path(`${this.path}/windscribe.svg`),
             ),
             style_class: 'system-status-icon',
         });
