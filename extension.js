@@ -166,19 +166,20 @@ export default class WindbarExtension extends Extension {
 
     async _loadLocations() {
         try {
-            const [locations, favorites] = await Promise.all([
-                this._cli.run(['locations']),
-                this._cli.run(['locations', 'fav']),
-            ]);
-
+            const locations = await this._cli.run(['locations']);
             const parsed = parseLocations(locations.stdout);
             this._locations = parsed.locations.slice(0, MAX_LOCATIONS);
             this._best = parsed.best;
-            this._favorites = parseLocations(favorites.stdout).locations;
         } catch (error) {
             this._locations = [];
-            this._favorites = [];
             this._best = null;
+        }
+
+        try {
+            const favorites = await this._cli.run(['locations', 'fav']);
+            this._favorites = parseLocations(favorites.stdout).locations;
+        } catch (error) {
+            this._favorites = [];
         }
 
         this._locationsLoaded = true;
