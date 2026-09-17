@@ -198,8 +198,13 @@ export default class WindbarExtension extends Extension {
         try {
             if (this._status?.connected)
                 await this._cli.run(['disconnect']);
-            else
+            else {
                 await this._connectCommand('best');
+                await this._refresh();
+                if (this._status?.connected)
+                    Main.notify('Windbar', 'Подключение выполнено, можно выпить пивка');
+                return;
+            }
         } catch (error) {
             this._statusItem.label.text = `Ошибка: ${this._shortError(error)}`;
         } finally {
@@ -211,6 +216,10 @@ export default class WindbarExtension extends Extension {
     async _connect(target) {
         try {
             await this._connectCommand(target);
+            await this._refresh();
+            if (this._status?.connected)
+                Main.notify('Windbar', 'Подключение выполнено, можно выпить пивка');
+            return;
         } catch (error) {
             this._statusItem.label.text = `Ошибка: ${this._shortError(error)}`;
         }
@@ -294,14 +303,15 @@ export default class WindbarExtension extends Extension {
         }
 
         for (const region of [...byRegion.keys()].sort()) {
-            const regionItem = new PopupMenu.PopupSubMenuMenuItem(region, false);
+            const regionItem = new PopupMenu.PopupMenuItem(region, {reactive: false});
+            this._locationsItem.menu.addMenuItem(regionItem);
+
             for (const location of byRegion.get(region)) {
                 const label = location.city
                     ? `${location.city} — ${location.nickname}`
                     : location.nickname;
-                regionItem.menu.addAction(label, () => this._connect(location.target));
+                this._locationsItem.menu.addAction(label, () => this._connect(location.target));
             }
-            this._locationsItem.menu.addMenuItem(regionItem);
         }
     }
 
