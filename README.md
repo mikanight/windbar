@@ -36,7 +36,22 @@ Install and authenticate Windscribe CLI according to its documentation first:
 windscribe-cli login
 ```
 
-Then clone and package Windbar:
+### From a release
+
+Download the latest `windbar@mikanight.shell-extension.zip` from the
+[Releases](https://github.com/mikanight/windbar/releases) page and install it
+without repackaging:
+
+```bash
+gnome-extensions install --force windbar@mikanight.shell-extension.zip
+gnome-extensions enable windbar@mikanight
+```
+
+Releases are built automatically by GitHub Actions every time a tag is pushed.
+
+### Build from source
+
+Clone and package Windbar:
 
 ```bash
 git clone https://github.com/mikanight/windbar.git

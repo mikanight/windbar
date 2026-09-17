@@ -1,0 +1,32 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - '*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pack extension
+        run: |
+          zip -r "windbar@mikanight.shell-extension.zip" \
+            metadata.json \
+            extension.js \
+            prefs.js \
+            cli.js \
+            parser.js \
+            windbar-connected.svg \
+            windbar-disconnected.svg \
+            schemas/
+
+      - name: Upload release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: windbar@mikanight.shell-extension.zip
