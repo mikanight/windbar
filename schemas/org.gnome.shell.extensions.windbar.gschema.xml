@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.windbar" path="/org/gnome/shell/extensions/windbar/">
+    <key name="poll-interval" type="i">
+      <default>30</default>
+      <range min="5" max="3600"/>
+      <summary>Refresh interval</summary>
+      <description>How often to poll the Windscribe status, in seconds.</description>
+    </key>
+    <key name="default-protocol" type="s">
+      <default>'auto'</default>
+      <summary>Default protocol</summary>
+      <description>Protocol used when connecting to a location.</description>
+    </key>
+  </schema>
+</schemalist>
