@@ -45,7 +45,8 @@ cd windbar
 gnome-extensions pack -f -o /tmp \
   --extra-source=cli.js \
   --extra-source=parser.js \
-  --extra-source=windscribe.svg \
+  --extra-source=windbar-connected.svg \
+  --extra-source=windbar-disconnected.svg \
   .
 
 gnome-extensions install --force /tmp/windbar@mikanight.shell-extension.zip
