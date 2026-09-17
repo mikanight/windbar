@@ -12,7 +12,8 @@ independent project and is not affiliated with Windscribe.
 - monochrome Windscribe icon in the panel;
 - current connection state, location, protocol and VPN IP;
 - connect to the best location and disconnect;
-- locations grouped by region;
+- desktop notification when the connection is established;
+- locations grouped under region headers;
 - favorite locations;
 - firewall on/off control;
 - protocol selection: Auto, WireGuard, OpenVPN UDP/TCP, Stealth and WStunnel;
@@ -20,7 +21,7 @@ independent project and is not affiliated with Windscribe.
 - clear states for a missing CLI or an unauthenticated account;
 - copy the login command to the clipboard;
 - configurable refresh interval and default protocol;
-- serialized CLI calls with retry handling for a busy Windscribe CLI.
+- serialized CLI calls with a timeout and retry handling for a busy Windscribe CLI.
 
 ## Requirements
 
@@ -103,6 +104,16 @@ Run the parser self-test and a live CLI smoke test from the repository root:
 ```
 
 The live test requires an installed, authenticated `windscribe-cli`.
+
+## Releases
+
+Releases are built and attached automatically by GitHub Actions when a tag is
+pushed. To publish a new release:
+
+```bash
+git tag -a 0.4 -m "Release 0.4"
+git push origin 0.4
+```
 
 ## Contributing
 
