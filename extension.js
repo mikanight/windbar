@@ -31,12 +31,16 @@ export default class WindbarExtension extends Extension {
         this._best = null;
         this._locationsLoaded = false;
         this._protocol = this._settings.get_string('default-protocol');
+        this._connectedIcon = Gio.FileIcon.new(
+            Gio.File.new_for_path(`${this.path}/windbar-connected.svg`),
+        );
+        this._disconnectedIcon = Gio.FileIcon.new(
+            Gio.File.new_for_path(`${this.path}/windbar-disconnected.svg`),
+        );
 
         this._button = new PanelMenu.Button(0.0, this.metadata.name, false);
         this._icon = new St.Icon({
-            gicon: Gio.FileIcon.new(
-                Gio.File.new_for_path(`${this.path}/windscribe.svg`),
-            ),
+            gicon: this._disconnectedIcon,
             style_class: 'system-status-icon',
         });
         this._button.add_child(this._icon);
@@ -340,6 +344,9 @@ export default class WindbarExtension extends Extension {
         this._rotateItem.visible = status.connected;
         this._pinItem.visible = status.connected;
         this._loginItem.visible = !status.loggedIn;
+        this._icon.gicon = status.connected
+            ? this._connectedIcon
+            : this._disconnectedIcon;
     }
 
     _shortError(error) {
