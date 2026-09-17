@@ -1,7 +1,7 @@
 import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 
-const COMMAND_TIMEOUT_SECONDS = 20;
+const COMMAND_TIMEOUT_SECONDS = 60;
 const RETRY_DELAY_MS = 500;
 const MAX_RETRIES = 3;
 
@@ -48,12 +48,15 @@ export class WindscribeCli {
             }
 
             let settled = false;
+            let timedOut = false;
             const timeoutId = GLib.timeout_add_seconds(
                 GLib.PRIORITY_DEFAULT,
                 COMMAND_TIMEOUT_SECONDS,
                 () => {
-                    if (!settled)
+                    if (!settled) {
+                        timedOut = true;
                         process.force_exit();
+                    }
                     return GLib.SOURCE_REMOVE;
                 },
             );
@@ -66,6 +69,11 @@ export class WindscribeCli {
                 GLib.Source.remove(timeoutId);
 
                 try {
+                    if (timedOut) {
+                        reject(new Error(`windscribe-cli timed out after ${COMMAND_TIMEOUT_SECONDS}s`));
+                        return;
+                    }
+
                     const [ok, stdout, stderr] = source.communicate_utf8_finish(result);
                     const status = source.get_exit_status();
                     const output = {
