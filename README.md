@@ -42,7 +42,7 @@ cd /home/mikanight/Документы/apps/windbar
 gnome-extensions pack -f -o /tmp \
   --extra-source=cli.js \
   --extra-source=parser.js \
-  --extra-source=windscribe-symbolic.svg \
+  --extra-source=windscribe.svg \
   .
 gnome-extensions install --force /tmp/windbar@mikanight.shell-extension.zip
 gnome-extensions enable windbar@mikanight
@@ -70,6 +70,6 @@ The `schemas/` directory is bundled and compiled automatically on install.
 gnome-extensions pack -f -o /tmp \
   --extra-source=cli.js \
   --extra-source=parser.js \
-  --extra-source=windscribe-symbolic.svg \
+  --extra-source=windscribe.svg \
   .
 ```
