@@ -1,5 +1,7 @@
 # Windbar
 
+![Windbar](screenshot.png)
+
 Windbar is a GNOME Shell extension for controlling Windscribe from the desktop
 panel through `windscribe-cli`.
 
@@ -9,18 +11,18 @@ independent project and is not affiliated with Windscribe.
 
 ## Features
 
-- monochrome Windscribe icon in the panel;
+- monochrome Windscribe logo in the panel;
 - current connection state, location, protocol and VPN IP;
 - connect to the best location and disconnect;
 - desktop notification when the connection is established;
 - locations grouped under region headers;
-- favorite locations;
+- favorite locations toggled with a star directly in the locations menu;
 - firewall on/off control;
 - protocol selection: Auto, WireGuard, OpenVPN UDP/TCP, Stealth and WStunnel;
 - IP rotation and current IP pinning when supported by the account;
 - clear states for a missing CLI or an unauthenticated account;
 - copy the login command to the clipboard;
-- configurable refresh interval and default protocol;
+- configurable refresh interval, default protocol and panel position;
 - serialized CLI calls with a timeout and retry handling for a busy Windscribe CLI.
 
 ## Requirements
@@ -84,7 +86,8 @@ gnome-extensions prefs windbar@mikanight
 Available settings:
 
 - default connection protocol;
-- status refresh interval from 5 to 3600 seconds.
+- status refresh interval from 5 to 3600 seconds;
+- panel position: left, center (next to the clock) or right.
 
 ## Notes
 

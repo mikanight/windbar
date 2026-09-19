@@ -12,5 +12,15 @@
       <summary>Default protocol</summary>
       <description>Protocol used when connecting to a location.</description>
     </key>
+    <key name="favorite-locations" type="as">
+      <default>[]</default>
+      <summary>Favorite locations</summary>
+      <description>Windbar's local list of favorite locations.</description>
+    </key>
+    <key name="panel-position" type="s">
+      <default>'right'</default>
+      <summary>Panel position</summary>
+      <description>Panel position: left, center (next to the clock) or right.</description>
+    </key>
   </schema>
 </schemalist>

@@ -12,6 +12,12 @@ const PROTOCOLS = [
     ['wstunnel', 'WStunnel'],
 ];
 
+const PANEL_POSITIONS = [
+    ['center', 'По центру (рядом с часами)'],
+    ['left', 'Слева'],
+    ['right', 'Справа'],
+];
+
 export default class WindbarPreferences extends ExtensionPreferences {
     fillPreferencesWindow(window) {
         const settings = this.getSettings();
@@ -53,5 +59,24 @@ export default class WindbarPreferences extends ExtensionPreferences {
             settings.set_int('poll-interval', intervalRow.get_value());
         });
         group.add(intervalRow);
+
+        const positionRow = new Adw.ComboRow({
+            title: 'Позиция на панели',
+            subtitle: 'Где отображать индикатор в верхней панели',
+        });
+        const positionModel = new Gtk.StringList();
+        for (const [, label] of PANEL_POSITIONS)
+            positionModel.append(label);
+        positionRow.set_model(positionModel);
+        positionRow.set_selected(Math.max(
+            0,
+            PANEL_POSITIONS.findIndex(([key]) => key === settings.get_string('panel-position')),
+        ));
+        positionRow.connect('notify::selected', () => {
+            const index = positionRow.get_selected();
+            if (index >= 0 && index < PANEL_POSITIONS.length)
+                settings.set_string('panel-position', PANEL_POSITIONS[index][0]);
+        });
+        group.add(positionRow);
     }
 }
