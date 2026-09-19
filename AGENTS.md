@@ -11,7 +11,7 @@ https://podster.fm/podcasts/belaruskij-podpivas
 
 ## Project
 
-Windbar is a GNOME Shell 50 extension written in GJS. It controls
+Windbar is a GNOME Shell 50/51 extension written in GJS. It controls
 `windscribe-cli` from the GNOME panel and has no third-party runtime
 dependencies.
 
@@ -58,7 +58,7 @@ The project was developed in small, tested slices:
 
 - Read the relevant files and existing callers before changing behavior.
 - Prefer the smallest correct change and reuse the existing CLI/parser flow.
-- Keep GNOME Shell 50 compatibility; use modern ESM imports and GJS APIs.
+- Keep GNOME Shell 50/51 compatibility; use modern ESM imports and GJS APIs.
 - Do not add a dependency for functionality already covered by GJS, GLib,
   Gio, GTK or Adwaita.
 - Keep CLI commands compatible with `windscribe-cli --help`:
@@ -82,7 +82,7 @@ for values that never change.
 
 What I use:
 
-- GNOME Shell 50 ESM imports and GJS APIs (Gio, GLib, St, Clutter);
+- GNOME Shell 50/51 ESM imports and GJS APIs (Gio, GLib, St, Clutter);
 - GTK4/Adwaita for the preferences window;
 - `Gio.Subprocess` for the serialized CLI queue;
 - GSettings for persistent state;

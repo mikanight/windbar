@@ -3,7 +3,7 @@
     "name": "Windbar",
     "description": "Control Windscribe from the GNOME Shell panel",
     "version": 1,
-    "shell-version": ["50"],
+    "shell-version": ["50", "51"],
     "url": "https://github.com/mikanight/windbar",
     "settings-schema": "org.gnome.shell.extensions.windbar"
 }

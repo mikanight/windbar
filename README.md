@@ -27,7 +27,7 @@ independent project and is not affiliated with Windscribe.
 
 ## Requirements
 
-- GNOME Shell 50;
+- GNOME Shell 50 or 51;
 - `windscribe-cli` installed and available in `PATH`;
 - a completed `windscribe-cli login`.
 
