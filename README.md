@@ -127,3 +127,8 @@ useful.
 For bug reports, include the GNOME Shell version, `windscribe-cli` version and
 relevant logs. Do not include account credentials, tokens or private network
 information.
+
+## License
+
+Windbar is distributed under the GNU General Public License version 3 or later
+(GPL-3.0-or-later). See [LICENSE](LICENSE).
