@@ -32,7 +32,7 @@ export function parseStatus(output) {
         'Connect state:',
     ]);
     const connected = /подключено|connected/i.test(connection) &&
-        !/не подключено|disconnected/i.test(connection);
+        !/не\s+подключено|not\s+connected|disconnected/i.test(connection);
     const loggedIn = findValue(lines, [
         'Состояние входа:',
         'Login state:',
@@ -47,7 +47,8 @@ export function parseStatus(output) {
     return {
         connected,
         connection,
-        loggedIn: /выполнен вход|logged in|logged in:/i.test(loggedIn),
+        loggedIn: /выполнен вход|logged in|logged in:/i.test(loggedIn) &&
+            !/не\s+выполнен\s+вход|not\s+logged\s+in/i.test(loggedIn),
         location: connected ? connection.replace(/^(подключено|connected)\s*:?\s*/i, '') : '',
         firewallOn: isOn(firewall),
         firewall,
@@ -147,6 +148,10 @@ if (typeof ARGV !== 'undefined' && ARGV[0] === '--self-test') {
     console.assert(!disconnected.connected);
     console.assert(!disconnected.firewallOn);
     console.assert(disconnected.ip === '[redacted]');
+
+    console.assert(!parseStatus('Connection state: Not connected').connected);
+    console.assert(!parseStatus('Login state: Not logged in').loggedIn);
+    console.assert(!parseStatus('Состояние входа: Не выполнен вход').loggedIn);
 
     const list = parseLocations([
         'Best Location',

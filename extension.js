@@ -220,9 +220,7 @@ export default class WindbarExtension extends Extension {
             this._status = parseStatus(result.stdout);
             this._renderStatus();
         } catch (error) {
-            this._status = null;
             this._statusItem.label.text = `Windscribe: ${this._shortError(error)}`;
-            this._toggleItem.label.text = 'Подключить';
         }
     }
 
