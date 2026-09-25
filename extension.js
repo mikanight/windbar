@@ -447,7 +447,7 @@ export default class WindbarExtension extends Extension {
             parts.push('Отключено');
         if (status.protocol)
             parts.push(status.protocol);
-        if (status.ip)
+        if (status.connected && status.ip)
             parts.push(`IP ${status.ip}`);
         if (!status.loggedIn)
             parts.push('не выполнен вход');

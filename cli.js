@@ -86,7 +86,7 @@ export class WindscribeCli {
                     if (output.ok)
                         resolve(output);
                     else
-                        reject(Object.assign(new Error(this._error(output)), output));
+                        reject(new Error(this._error(output)));
                 } catch (error) {
                     reject(error);
                 }
@@ -96,6 +96,7 @@ export class WindscribeCli {
 
     _error(result) {
         const message = result.stderr.trim() || result.stdout.trim();
-        return message || `windscribe-cli exited with status ${result.status}`;
+        return (message || `windscribe-cli exited with status ${result.status}`)
+            .replace(/\b(?:\d{1,3}\.){3}\d{1,3}\b/g, '[IP скрыт]');
     }
 }

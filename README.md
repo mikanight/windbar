@@ -103,6 +103,13 @@ client or use the CLI-only setup.
 IP rotation and IP pinning require an active connection and a Windscribe plan
 that supports those operations.
 
+## Privacy
+
+Windbar reads connection details from the locally installed `windscribe-cli`.
+It does not save the VPN IP in GSettings or send it to a Windbar service; the IP
+is shown in the status menu only while connected. The CLI handles its own
+network requests and account data.
+
 ## Development
 
 Run the parser self-test and a live CLI smoke test from the repository root:
@@ -119,8 +126,8 @@ Releases are built and attached automatically by GitHub Actions when a tag is
 pushed. To publish a new release:
 
 ```bash
-git tag -a 0.4 -m "Release 0.4"
-git push origin 0.4
+git tag -a 1.0.0 -m "Release 1.0.0"
+git push origin 1.0.0
 ```
 
 ## Contributing

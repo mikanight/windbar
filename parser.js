@@ -130,7 +130,7 @@ if (typeof ARGV !== 'undefined' && ARGV[0] === '--self-test') {
         'Состояние входа: Выполнен вход',
         'Состояние брандмауэра: Вкл.',
         'Протокол: WireGuard:443',
-        'IP-адрес VPN: [redacted]',
+        'IP-адрес VPN: [скрыто]',
     ].join('\n'));
 
     console.assert(status.connected);
@@ -138,16 +138,16 @@ if (typeof ARGV !== 'undefined' && ARGV[0] === '--self-test') {
     console.assert(status.firewallOn);
     console.assert(status.location === 'Warsaw - Vistula');
     console.assert(status.protocol === 'WireGuard:443');
-    console.assert(status.ip === '[redacted]');
+    console.assert(status.ip === '[скрыто]');
 
     const disconnected = parseStatus([
         'Состояние подключения: Отключено',
         'Состояние брандмауэра: Выкл.',
-        'Публичный IP: [redacted]',
+        'Публичный IP: [скрыто]',
     ].join('\n'));
     console.assert(!disconnected.connected);
     console.assert(!disconnected.firewallOn);
-    console.assert(disconnected.ip === '[redacted]');
+    console.assert(disconnected.ip === '[скрыто]');
 
     console.assert(!parseStatus('Connection state: Not connected').connected);
     console.assert(!parseStatus('Login state: Not logged in').loggedIn);

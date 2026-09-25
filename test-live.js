@@ -5,7 +5,7 @@ const cli = new WindscribeCli();
 
 const status = await cli.run(['status']);
 const parsed = parseStatus(status.stdout);
-console.log('status:', JSON.stringify(parsed));
+console.log('status:', parsed.connected ? 'connected' : 'disconnected');
 
 const locations = await cli.run(['locations']);
 const list = parseLocations(locations.stdout);
