@@ -1,5 +1,10 @@
 # Windbar
 
+[![Latest release](https://img.shields.io/github/v/release/mikanight/windbar?display_name=tag&logo=github)](https://github.com/mikanight/windbar/releases)
+[![GNOME Shell 50 | 51](https://img.shields.io/badge/GNOME%20Shell-50%20%7C%2051-4A86CF?logo=gnome&logoColor=white)](metadata.json)
+[![License: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/mikanight/windbar?style=social)](https://github.com/mikanight/windbar/stargazers)
+
 ![Windbar](screenshot.png)
 
 Windbar is a GNOME Shell extension for controlling Windscribe from the desktop
